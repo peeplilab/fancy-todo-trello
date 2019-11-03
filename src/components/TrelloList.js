@@ -6,7 +6,7 @@ const TrelloList = ({title, cards}) => {
     <div style={styles.container}>
       <h3>{title}</h3>
       {cards.map(card => (
-     <TrelloCard text={card.text}></TrelloCard> 
+     <TrelloCard key={card.id} text={card.text}></TrelloCard> 
 
       ))}
     </div>
@@ -19,8 +19,12 @@ const styles = {
     borderRadius: 2,
     width:300,
     padding: 8,
-    marginRight: 8
+    marginRight: 8,
+    background: 'linear-gradient(to right bottom,  #d3cce3, #e9e4f0)'
   }
 }
 
 export default TrelloList;
+
+//https://uigradients.com/#Portrait
+//add key property for performance optimizations

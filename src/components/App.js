@@ -11,7 +11,7 @@ class App extends React.Component {
         <h2>Hello </h2>
         <div style={styles.listsContainer}>
           {lists.map(list => (
-            <TrelloList title={list.title} cards={list.cards} />
+            <TrelloList key={list.id} title={list.title} cards={list.cards} />
           ))}
         </div>
       </div>

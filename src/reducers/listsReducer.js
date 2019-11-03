@@ -30,6 +30,24 @@ const initialState = [
         text: "swecond Stateccccccccc"
       }
     ]
+  },
+  {
+    title : "third Episode",
+    id: 2,
+    cards : [
+      {
+        id: 0,
+        text: "third STATIC"
+      },
+      {
+        id:1,
+        text: "third Stateccccccccc"
+      },
+      {
+        id:2,
+        text: "third Stateccccccccc"
+      }
+    ]
   }
 ]
 
