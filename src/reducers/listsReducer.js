@@ -1,55 +1,37 @@
 import { CONSTANTS } from '../actions';
 
 let listID = 2;
-let cardID = 4;
+let cardID = 3;
 const initialState = [
   {
     title: "Last Episode",
-    id: 0,
+    id: `list-${0}`,
     cards: [
       {
-        id: 0,
+        id:  `card-${0}`,
         text: "STATIC"
       },
       {
-        id: 1,
+        id:  `card-${1}`,
         text: "Stateccccccccc"
       }
     ]
   },
   {
     title: "Second Episode",
-    id: 1,
+    id: `list-${1}`,
     cards: [
       {
-        id: 0,
+        id: `card-${0}`,
         text: "second STATIC"
       },
       {
-        id: 1,
+        id:  `card-${1}`,
         text: "swecond Stateccccccccc"
       },
       {
-        id: 2,
+        id:  `card-${2}`,
         text: "swecond Stateccccccccc"
-      }
-    ]
-  },
-  {
-    title: "third Episode",
-    id: 2,
-    cards: [
-      {
-        id: 0,
-        text: "third STATIC"
-      },
-      {
-        id: 1,
-        text: "third Stateccccccccc"
-      },
-      {
-        id: 2,
-        text: "third Stateccccccccc"
       }
     ]
   }
@@ -61,22 +43,22 @@ const listsReducer = (state = initialState, action) => {
       const newList = {
         title: action.payload,
         cards: [],
-        id: listID
+        id: `list-${listID}`
       }
       listID += 1
       return [...state, newList];
 
-      case CONSTANTS.ADD_CARD : 
+    case CONSTANTS.ADD_CARD:
       const newCard = {
-        text : action.payload.text,
-        id: cardID
+        text: action.payload.text,
+        id: `card-${cardID}`
       }
-      cardID +=1;
+      cardID += 1;
       const newState = state.map((list) => {
-        if(list.id === action.payload.listID) {
+        if (list.id === action.payload.listID) {
           return {
             ...list,
-            cards : [...list.cards, newCard]
+            cards: [...list.cards, newCard]
           }
         } else {
           return list

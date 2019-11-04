@@ -2,14 +2,21 @@ import React from 'react';
 import TrelloList from './TrelloList';
 import { connect } from 'react-redux';
 import TrelloActionButton from './TrelloActionButton';
+import { DragDropContext } from 'react-beautiful-dnd';
+
 
 class App extends React.Component {
-  render() {
-    const { lists } = this.props;
 
-    return (
-      <div className="App">
-        <h2>Hello </h2>
+  onDragEnd = () => {
+    //reordering logic
+  }
+
+    render() {
+  const { lists } = this.props;
+
+  return (
+    <DragDropContext onDragEnd={this.onDragEnd}>
+      <div>
         <div style={styles.listsContainer}>
           {lists.map(list => (
             <TrelloList
@@ -23,8 +30,10 @@ class App extends React.Component {
           </TrelloActionButton>
         </div>
       </div>
-    )
-  }
+    </DragDropContext>
+
+  )
+}
 
 }
 
