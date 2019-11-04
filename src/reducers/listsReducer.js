@@ -1,19 +1,19 @@
 import { CONSTANTS } from '../actions';
 
 let listID = 2;
-let cardID = 3;
+let cardID = 9;
 const initialState = [
   {
     title: "Last Episode",
     id: `list-${0}`,
     cards: [
       {
-        id:  `card-${0}`,
-        text: "STATIC"
+        id: `card-${0}`,
+        text: "STATIC ONE ONE ONE"
       },
       {
-        id:  `card-${1}`,
-        text: "Stateccccccccc"
+        id: `card-${1}`,
+        text: "STATIC TWO TWO TWO"
       }
     ]
   },
@@ -22,15 +22,27 @@ const initialState = [
     id: `list-${1}`,
     cards: [
       {
-        id: `card-${0}`,
+        id: `card-${3}`,
         text: "second STATIC"
       },
       {
-        id:  `card-${1}`,
+        id: `card-${4}`,
         text: "swecond Stateccccccccc"
       },
       {
-        id:  `card-${2}`,
+        id: `card-${5}`,
+        text: "swecond Stateccccccccc"
+      },
+      {
+        id: `card-${6}`,
+        text: "swecond Stateccccccccc"
+      },
+      {
+        id: `card-${7}`,
+        text: "swecond Stateccccccccc"
+      },
+      {
+        id: `card-${8}`,
         text: "swecond Stateccccccccc"
       }
     ]
@@ -48,7 +60,7 @@ const listsReducer = (state = initialState, action) => {
       listID += 1
       return [...state, newList];
 
-    case CONSTANTS.ADD_CARD:
+    case CONSTANTS.ADD_CARD: {
       const newCard = {
         text: action.payload.text,
         id: `card-${cardID}`
@@ -64,7 +76,26 @@ const listsReducer = (state = initialState, action) => {
           return list
         }
       })
-      return newState
+      return newState;
+    }
+    case CONSTANTS.DRAG_HAPPENED:
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexStart,
+        droppableIndexEnd,
+        draggableId
+      } = action.payload;
+      const newState = [...state];
+      //in the same list case
+      if (droppableIdStart === droppableIdEnd) {
+        const list = state.find(list => droppableIdStart === list.id) ;
+        //GRAB ELEMENT THAT IS DRAGGED
+        const card = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...card)
+      } 
+      return newState;
+
     default: return state
   }
 }
