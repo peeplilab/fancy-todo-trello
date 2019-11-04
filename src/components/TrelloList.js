@@ -2,24 +2,24 @@ import React from 'react';
 import TrelloCard from './TrelloCard';
 import TrelloActionButton from './TrelloActionButton'
 
-const TrelloList = ({title, cards}) => {
+const TrelloList = ({ title, cards, listID }) => {
   return (
     <div style={styles.container}>
       <h3>{title}</h3>
       {cards.map(card => (
-     <TrelloCard key={card.id} text={card.text}></TrelloCard> 
+        <TrelloCard key={card.id} text={card.text}></TrelloCard>
 
       ))}
-      <TrelloActionButton />
+      <TrelloActionButton listID={listID} />
     </div>
   )
 }
 
 const styles = {
   container: {
-    backgroundColor : "pink",
+    backgroundColor: "pink",
     borderRadius: 2,
-    width:300,
+    width: 300,
     padding: 8,
     marginRight: 8,
     background: 'linear-gradient(to right bottom,  #d3cce3, #e9e4f0)',
